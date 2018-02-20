@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity
 
 
   int nr1, nr2;
+  String old , New;
 
   boolean plus, minus, multi, div;
 
@@ -26,6 +27,40 @@ public class MainActivity extends AppCompatActivity
     txt_result = (TextView) findViewById(R.id.textView26);
     txt_step = (TextView) findViewById(R.id.textView25);
 
+    txt_clear = (TextView) findViewById(R.id.txt_clear);
+    txt_plus = (TextView) findViewById(R.id.txt_plus);
+    txt_equal = (TextView) findViewById(R.id.txt_equal);
+
+
+
+    txt_clear.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            txt_result.setText("");
+        }
+    });
+    txt_plus.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String oldValue = txt_result.getText().toString();
+            txt_result.setText(oldValue + "+");
+        }
+    });
+
+    txt_equal.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            String oldValue = txt_result.getText().toString();
+            int findPlus = oldValue.indexOf("+");
+            if(findPlus != -1)
+            {
+                Toast.makeText(MainActivity.this, old + "is old and is new ="+ New, Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        }
+    });
 
   }
 
@@ -38,6 +73,9 @@ public class MainActivity extends AppCompatActivity
           int getTagNum = Integer.parseInt(view.getTag().toString());
           appendNumerToTextView(getTagNum);
 
+
+
+
       }
       else
       {
@@ -45,19 +83,12 @@ public class MainActivity extends AppCompatActivity
       }
   }
 
-
-
-
   private void appendNumerToTextView(int getTagNum) {
 
     String oldValue = txt_result.getText().toString();
-
+    old = oldValue;
+    New = ""+getTagNum;
     txt_result.setText(oldValue + getTagNum);
   }
-
-
-
-
-
 
 }
